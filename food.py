@@ -1,43 +1,20 @@
-def get_order_category(avg_price):
-    if avg_price >= 500:
-        return "Premium Order"
-    elif 350 <= avg_price <= 499:
-        return "Gold Order"
-    elif 200 <= avg_price <= 349:
-        return "Silver Order"
-    elif 100 <= avg_price <= 199:
-        return "Regular Order"
-    else:
-        return "Basic Order"
-
-
-def process_order(customer_name, restaurant_name, food_category, prices):
-    avg_price = sum(prices) / len(prices)
-    order_category = get_order_category(avg_price)
-
-    order_details = {
-        "Customer Name": customer_name,
-        "Restaurant Name": restaurant_name,
-        "Food Category": food_category,
-        "Item Prices": prices,
-        "Average Price": avg_price,
-        "Order Category": order_category
-    }
-    return order_details
-
-
+class FoodOrder:
+    def __init__(self, order_id, customer_name, items, prices):
+        self.order_id = order_id
+        self.customer_name = customer_name
+        self.items = items
+        self.prices = prices
+    def total_price(self):
+        return sum(self.prices)
 if __name__ == "__main__":
-    customer_name = "TxtUser"
-    restaurant_name = "TxtUser"
-    food_category = "TxtUser"
-
+    items = []
     prices = []
-    for i in range(1, 4):
+    n = int(input("Enter number of items: "))
+    for i in range(1, n + 1):
+        item = input(f"Enter item {i} name: ")
         price = float(input(f"Enter price of item {i}: "))
+        items.append(item)
         prices.append(price)
+    order = FoodOrder(1, "User", items, prices)
+    print("Total bill:", order.total_price())
 
-    order = process_order(customer_name, restaurant_name, food_category, prices)
-
-    print("\n--- Order Details ---")
-    for key, value in order.items():
-        print(f"{key}: {value}")
