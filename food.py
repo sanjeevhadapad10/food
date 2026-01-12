@@ -27,7 +27,7 @@ def process_order(customer_name, restaurant_name, food_category, prices):
 
 
 if __name__ == "__main__":
-    customer_name = input("Enter customer name: ")
+    customer_name = "TxtUser"
     restaurant_name = input("Enter restaurant name: ")
     food_category = input("Enter food category: ")
 
